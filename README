@@ -1,0 +1,30 @@
+ar_openid_store
+===============
+
+An ActiveRecord-based OpenID store for the ruby-openid gem.  This gem itself is based on the active_record_openid_store included in the examples of the ruby-openid gem by JanRail (see NOTICE).  I've just packaged it
+as a gem for convience and use outside of Rails.
+
+To install:
+
+  gem install ar_openid_store
+  
+To create the tables.  Create a migration similar to the following:
+
+  require 'ar_openid_store/migration'
+  class AddOpenidTables < ActiveRecord::Migration
+  
+    def self.up
+      create_openid_tables
+    end
+    
+    def self.down
+      drop_openid_tables
+    end
+    
+  end
+  
+To use with merb_openid:
+
+  Merb::Config[:merb_openid][:store] = ActiveRecordStore.new
+
+  
